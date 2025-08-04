@@ -8,13 +8,13 @@ describe("The Bowling Game", () => {
         game = new BowlingGame()
     })
 
-    it.skip("calculates score for a given gutter game", () => {
+    it("calculates score for a given gutter game", () => {
         rollMany(20, 0)
 
         expect(game.calculateTotalScore()).toBe(0)
     })
 
-    it.skip("calculates the score for a given all ones game", () => {
+    it("calculates the score for a given all ones game", () => {
         rollMany(20, 1)
 
         expect(game.calculateTotalScore()).toBe(20)
