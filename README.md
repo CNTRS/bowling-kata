@@ -1,5 +1,3 @@
-
-
 # Bowling Kata 🚀
 
 [🇪🇸 Versión en Español](README.es.md)
@@ -125,4 +123,3 @@ describe('myFunction', () => {
   })
 })
 ```
-
