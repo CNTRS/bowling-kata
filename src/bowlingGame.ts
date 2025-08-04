@@ -8,16 +8,11 @@ export class BowlingGame {
     }
 
     calculateTotalScore(): number {
-        let totalScore = 0;
-        let rollIndex = 0;
-
-        for (let frameIndex = 0; frameIndex < this.maxFrames; frameIndex++) {
-            const frameScore = this.calculateFrameScore({ totalScore, rollIndex });
-            totalScore = frameScore.totalScore;
-            rollIndex = frameScore.rollIndex;
-        }
-
-        return totalScore;
+        const result = this.getFrames().reduce(
+            ({ totalScore, rollIndex }, _, _frameIndex) => this.calculateFrameScore({ totalScore, rollIndex }),
+            { totalScore: 0, rollIndex: 0 }
+        );
+        return result.totalScore;
     }
 
     private calculateFrameScore({ totalScore, rollIndex }: { totalScore: number, rollIndex: number }) {
@@ -38,6 +33,9 @@ export class BowlingGame {
             totalScore: totalScore + this.sumBallsInFrame(rollIndex),
             rollIndex: rollIndex + 2
         }
+    }
+    private getFrames(): number[] {
+        return new Array(this.maxFrames).fill(undefined)
     }
     private isStrike(frameIndex: number): boolean {
         return this.rolls[frameIndex] === this.maxScorePerFrame;
