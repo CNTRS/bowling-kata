@@ -62,6 +62,6 @@
     },
     "files": {
         "include": ["src/**/*", "*.ts", "*.js", "*.json"],
-        "ignore": ["node_modules", "dist", "coverage"]
+        "ignore": ["node_modules", "dist", "coverage", "src/__tests__/*"]
     }
 }

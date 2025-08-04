@@ -1,124 +1,41 @@
-# TS-Starter 🚀 TypeScript Modern Template
+
+
+# Bowling Kata 🚀
 
 [🇪🇸 Versión en Español](README.es.md)
 
-Modern and optimized TypeScript template designed for both kata practice and professional project development. Features the latest and fastest tools from the JavaScript/TypeScript ecosystem.
+## Statement
 
-## ✨ Features
+Create a program that calculates the score for a game of bowling.
 
-- **⚡ Ultra fast**: Vitest, Biome, tsup and pnpm for maximum performance
-- **🔧 Minimal configuration**: Everything configured and ready to use
-- **📦 Modern package management**: pnpm for dependency efficiency
-- **🧪 Advanced testing**: Vitest with coverage and UI
-- **🎯 Unified linting**: Biome for linting and formatting in one tool
-- **📈 Automatic versioning**: Changesets for professional releases
-- **🔄 Git hooks**: Automated pre-commit and pre-push
-- **🏗️ Optimized build**: tsup with ESM/CJS support
+### Rules
 
-## 📋 Prerequisites
+1. The game consists of 10 frames.
+2. In each frame, the player has two opportunities to knock down 10 pins.
+3. If the player knocks down all 10 pins on the first try (a strike), the frame ends and the next two rolls are added as bonus.
+4. If the player knocks down all 10 pins in two tries (a spare), the next roll is added as bonus.
+5. If neither a strike nor a spare is scored, the frame score is the total pins knocked down in that frame.
+6. In the tenth frame, if the player scores a strike or spare, they get extra rolls to complete the bonus.
+7. The final score is the sum of all frames, including bonuses.
 
-- **Node.js**: >= 22.0.0 (LTS recommended)
-- **pnpm**: >= 10.0.0
+### Example
 
-### Prerequisites Installation
+| Frame | Rolls      | Score |
+|-------|------------|-------|
+| 1     | X          | 10 + next two rolls |
+| 2     | 7 /        | 10 + next roll      |
+| 3     | 9 0        | 9                  |
+| ...   | ...        | ...                |
 
-Installation guide for fnm: https://fnm.vercel.app/
+Implement the scoring logic and provide tests to verify the solution.
 
-TL;DR:
-```bash
-# Install fnm on Linux/MacOS
-curl -fsSL https://fnm.vercel.app/install | bash
+---
 
-# Install fnm on Windows (using Chocolatey)
-choco install fnm
-```
+## Development
 
-Installation guide for pnpm: https://pnpm.io/installation
+Implement your solution in `src/bowlingGame.ts` and write tests in `src/__tests__/bowlingGame.test.ts`.
 
-TL;DR:
-```bash
-# Install pnpm on Linux/MacOS
-curl -fsSL https://get.pnpm.io/install.sh | sh -
-
-# If you don't have curl, you can use wget instead
-wget -qO- https://get.pnpm.io/install.sh | sh -
-
-# Install pnpm on Windows (using PowerShell)
-Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression
-```
-
-```bash
-# Install Node.js version using fnm
-fnm use --install-if-missing
-```
-
-## 🚀 Quick Start
-
-### 1. Create a new project
-
-```bash
-# Option 1: Clone the template
-git clone <repository-url> my-new-project
-cd my-new-project
-rm -rf .git && git init
-
-# Option 2: Use as template on GitHub
-# Click "Use this template" on GitHub
-
-# Option 3: Use degit (recommended)
-npx degit <username>/<template-repo> my-new-project
-cd my-new-project
-```
-
-### 2. Configure the project
-
-```bash
-# Install dependencies
-pnpm install
-
-# Setup git hooks
-pnpm prepare
-
-# Verify everything works
-pnpm test
-```
-
-### 3. Customize
-
-```bash
-# Update package.json with your information
-# - name: your project name
-# - description: project description
-# - author: your information
-# - repository: repository URL
-```
-
-## 📁 Project Structure
-
-```
-my-project/
-├── .changeset/           # Changesets configuration
-│   └── config.json
-├── .github/              # GitHub workflows (optional)
-│   └── workflows/
-│       └── ci.yml
-├── src/                  # Source code
-│   ├── index.ts          # Main entry point
-│   └── __tests__/        # Tests
-│       └── example.test.ts
-├── dist/                 # Build output (generated)
-├── coverage/             # Coverage reports (generated)
-├── .gitignore           # Files ignored by git
-├── .nvmrc               # Node.js version
-├── biome.json           # Biome configuration
-├── package.json         # Dependencies and scripts
-├── pnpm-lock.yaml       # pnpm lock file
-├── README.md            # This file
-├── README.es.md         # This file in Spanish
-├── tsconfig.json        # TypeScript configuration
-├── tsup.config.ts       # Build configuration
-└── vitest.config.ts     # Test configuration
-```
+---
 
 ## 🔧 Main Scripts
 
@@ -209,253 +126,3 @@ describe('myFunction', () => {
 })
 ```
 
-## 🏗️ Build and Distribution
-
-The project generates optimized builds for multiple formats:
-
-```bash
-# Generate build
-pnpm build
-```
-
-**Generated output:**
-- `dist/index.js` - CommonJS
-- `dist/index.mjs` - ES Modules
-- `dist/index.d.ts` - TypeScript types
-
-## 📦 Version Management
-
-We use [Changesets](https://github.com/changesets/changesets) for version management:
-
-### 1. Create changeset
-
-```bash
-pnpm changeset
-```
-
-This will ask you:
-- Which packages have changed
-- Type of change (major, minor, patch)
-- Description of the change
-
-### 2. Update versions
-
-```bash
-pnpm version
-```
-
-### 3. Publish
-
-```bash
-pnpm release
-```
-
-## 🛠️ Configuration
-
-### TypeScript
-
-The configuration in `tsconfig.json` is optimized for:
-- ES2022 target
-- Strict mode enabled
-- Modern module resolution
-- Vitest globals support
-
-### Biome
-
-Unified configuration for linting and formatting in `biome.json`:
-- Recommended rules enabled
-- Consistent formatting
-- Automatic import organization
-
-### Git Hooks
-
-Automatically configured via `simple-git-hooks`:
-- **Pre-commit**: Linting + type checking
-- **Pre-push**: Full test suite
-
-## 🔌 Additional Dependencies and Utilities
-
-### For Programming Katas
-
-#### @faker-js/faker - Test Data Generation
-```bash
-pnpm add -D @faker-js/faker
-```
-
-Perfect for generating realistic data in tests:
-
-```typescript
-import { faker } from '@faker-js/faker'
-
-const user = {
-  name: faker.person.fullName(),
-  email: faker.internet.email(),
-  age: faker.number.int({ min: 18, max: 80 })
-}
-```
-
-#### fast-check - Property-Based Testing
-```bash
-pnpm add -D fast-check
-```
-
-For more robust tests that find edge cases automatically:
-
-```typescript
-import fc from 'fast-check'
-
-fc.assert(fc.property(fc.integer(), fc.integer(), (a, b) => {
-  expect(add(a, b)).toBe(add(b, a)) // commutative property
-}))
-```
-
-### For Professional Projects
-
-#### zod - Schema Validation
-```bash
-pnpm add zod
-```
-
-**Highly recommended** for type-safe validation:
-
-```typescript
-import { z } from 'zod'
-
-const UserSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  age: z.number().int().positive()
-})
-
-type User = z.infer<typeof UserSchema> // Automatic types
-```
-
-#### @total-typescript/ts-reset - Enhanced TypeScript
-```bash
-pnpm add -D @total-typescript/ts-reset
-```
-
-Improves TypeScript's default types. Just add at the beginning of your code:
-
-```typescript
-import '@total-typescript/ts-reset'
-```
-
-#### msw - API Mocking
-```bash
-pnpm add -D msw
-```
-
-For testing without depending on real APIs:
-
-```typescript
-import { http, HttpResponse } from 'msw'
-import { setupServer } from 'msw/node'
-
-const server = setupServer(
-  http.get('/api/user', () => {
-    return HttpResponse.json({ name: 'John' })
-  })
-)
-```
-
-### Development Tools
-
-#### size-limit - Bundle Monitoring
-```bash
-pnpm add -D size-limit @size-limit/preset-small-lib
-```
-
-Configure in `package.json`:
-
-```json
-{
-  "size-limit": [
-    {
-      "path": "dist/index.js",
-      "limit": "10 KB"
-    }
-  ],
-  "scripts": {
-    "size": "size-limit"
-  }
-}
-```
-
-#### @commitlint/cli - Commit Standardization
-```bash
-pnpm add -D @commitlint/cli @commitlint/config-conventional
-```
-
-Create `commitlint.config.js`:
-
-```javascript
-module.exports = {
-  extends: ['@commitlint/config-conventional']
-}
-```
-
-#### cross-env - Cross-Platform Environment Variables
-```bash
-pnpm add -D cross-env
-```
-
-For scripts that work on all operating systems:
-
-```json
-{
-  "scripts": {
-    "build:prod": "cross-env NODE_ENV=production pnpm build"
-  }
-}
-```
-
-### Context-Specific Dependencies
-
-#### For Web/API Projects
-```bash
-pnpm add @hono/hono           # Minimalist web framework
-pnpm add drizzle-orm          # Type-safe ORM
-pnpm add @t3-oss/env-nextjs   # Environment variable validation
-```
-
-#### For CLI Projects
-```bash
-pnpm add commander  # CLI argument parsing
-pnpm add chalk      # Terminal colors
-pnpm add ora        # Loading spinners
-```
-
-#### For Data Manipulation
-```bash
-pnpm add papaparse  # CSV parsing
-pnpm add date-fns   # Date manipulation
-pnpm add lodash-es  # Functional utilities
-```
-
-## 📈 Comparison with Traditional Templates
-
-| Metric | Traditional Template | This Template | Improvement |
-|--------|---------------------|---------------|-------------|
-| Installation | ~45s (npm) | ~18s (pnpm) | 60% faster |
-| Build | ~8s (tsc) | ~1.2s (tsup) | 85% faster |
-| Tests | ~3.5s (Jest) | ~0.8s (Vitest) | 77% faster |
-| Linting | ~2.1s (ESLint+Prettier) | ~0.3s (Biome) | 86% faster |
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🎯 Use Cases
-
-### For Katas
-1. Clone the template
-2. Implement your solution in `src/index.ts`
-3. Write tests in `src/__tests__/`
-4. Run `pnpm test` to verify
-
-### For New Projects
-1. Use the template as base
-2. Add specific dependencies as needed
-3. Configure CI/CD using included workflows
-4. Develop with `pnpm dev` and test with `pnpm test`

@@ -24,127 +24,43 @@ Template moderno y optimizado para TypeScript diseñado tanto para la práctica 
 
 Guía de instalación de fnm: https://fnm.vercel.app/
 
-TL;DR:
-```bash
-# Instalar fnm en Linux/MacOS
-curl -fsSL https://fnm.vercel.app/install | bash
 
-# Instalar fnm en Windows (usando Chocolatey)
-choco install fnm
-```
+# Kata Bowling 🚀
 
-Guía de instalación de pnpm: https://pnpm.io/installation
+[🇬🇧 English version](README.md)
 
-TL;DR:
-```bash
-# Instalar pnpm en Linux/MacOS
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+## Enunciado
 
-# Si no tienes curl, puedes usar wget en su lugar
-wget -qO- https://get.pnpm.io/install.sh | sh -
+Crea un programa que calcule la puntuación de una partida de bolos.
 
-# Instalar pnpm en Windows (usando PowerShell)
-Invoke-WebRequest https://get.pnpm.io/install.ps1 -UseBasicParsing | Invoke-Expression
-```
+### Reglas
 
-```bash
-# Instalar la versión de Node.js usando fnm
-fnm use --install-if-missing
-```
+1. El juego consta de 10 tiradas (frames).
+2. En cada tirada, el jugador tiene dos oportunidades para derribar 10 bolos.
+3. Si el jugador derriba los 10 bolos en el primer intento (strike), la tirada termina y los dos siguientes lanzamientos se suman como bonus.
+4. Si el jugador derriba los 10 bolos en dos intentos (spare), el siguiente lanzamiento se suma como bonus.
+5. Si no se consigue ni strike ni spare, la puntuación de la tirada es la suma de los bolos derribados en esa tirada.
+6. En la décima tirada, si el jugador consigue strike o spare, obtiene lanzamientos extra para completar el bonus.
+7. La puntuación final es la suma de todas las tiradas, incluyendo los bonus.
 
-## 🚀 Inicio Rápido
+### Ejemplo
 
-### 1. Crear un nuevo proyecto
+| Tirada | Lanzamientos | Puntuación |
+|--------|--------------|------------|
+| 1      | X            | 10 + dos siguientes lanzamientos |
+| 2      | 7 /          | 10 + siguiente lanzamiento       |
+| 3      | 9 0          | 9                                 |
+| ...    | ...          | ...                               |
 
-```bash
-# Opción 1: Clonar el template
-git clone <repository-url> my-new-project
-cd my-new-project
-rm -rf .git && git init
+Implementa la lógica de puntuación y proporciona tests para verificar la solución.
 
-# Opción 2: Usar como template en GitHub
-# Click en "Use this template" en GitHub
+---
 
-# Opción 3: Usar degit (recomendado)
-npx degit <username>/<template-repo> my-new-project
-cd my-new-project
-```
+## Desarrollo
 
-### 2. Configurar el proyecto
+Implementa tu solución en `src/bowlingGame.ts` y los tests en `src/__tests__/bowlingGame.test.ts`.
 
-```bash
-# Instalar dependencias
-pnpm install
-
-# Configurar git hooks
-pnpm prepare
-
-# Verificar que todo funciona
-pnpm test
-```
-
-### 3. Personalizar
-
-```bash
-# Actualizar package.json con tu información
-# - name: nombre de tu proyecto
-# - description: descripción del proyecto
-# - author: tu información
-# - repository: URL del repositorio
-```
-
-## 📁 Estructura del Proyecto
-
-```
-my-project/
-├── .changeset/           # Configuración de changesets
-│   └── config.json
-├── .github/              # GitHub workflows (opcional)
-│   └── workflows/
-│       └── ci.yml
-├── src/                  # Código fuente
-│   ├── index.ts          # Punto de entrada principal
-│   └── __tests__/        # Tests
-│       └── example.test.ts
-├── dist/                 # Build output (generado)
-├── coverage/             # Coverage reports (generado)
-├── .gitignore           # Archivos ignorados por git
-├── .nvmrc               # Versión de Node.js
-├── biome.json           # Configuración de Biome
-├── package.json         # Dependencias y scripts
-├── pnpm-lock.yaml       # Lock file de pnpm
-├── README.md            # Este archivo en inglés
-├── README.es.md         # Este archivo
-├── tsconfig.json        # Configuración de TypeScript
-├── tsup.config.ts       # Configuración de build
-└── vitest.config.ts     # Configuración de tests
-```
-
-## 🔧 Scripts Principales
-
-### Desarrollo
-
-```bash
-# Desarrollo con hot reload
-pnpm dev
-
-# Tests en modo watch
-pnpm test
-
-# Tests con interfaz web
-pnpm test:ui
-
-# Tests con coverage
-pnpm test:coverage
-```
-
-### Calidad de Código
-
-```bash
-# Verificar código (linting + formateo)
-pnpm lint
-
-# Corregir automáticamente
+---
 pnpm lint:fix
 
 # Solo formatear
